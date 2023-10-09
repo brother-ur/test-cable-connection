@@ -1,0 +1,16 @@
+<h1>Messages</h1>
+
+<div data-controller='message-list'>
+  <div data-target='message-list.messages'>
+    <%= render @messages %>
+  </div>
+
+  <%= form_with(model: Message.new,
+                url: root_path,
+                data: { action: 'ajax:success->message-list#clearInput' }
+      ) do |form| %>
+
+    <%= form.text_area :message, data: { target: 'message-list.input' } %>
+    <%= form.submit style: 'display: block' %>
+  <% end %>
+</div>
